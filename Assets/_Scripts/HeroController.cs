@@ -8,11 +8,13 @@ public class HeroController : MonoBehaviour {
     private float _move;
     private float _jump;
     private bool _facingRight;
+    private Transform _transform;
 
 
     // Use this for initialization
     void Start()
     {
+        this._transform = gameObject.GetComponent<Transform>();
         this._animator = gameObject.GetComponent<Animator>();
         this._move = 0f;
         this._jump = 0f;
@@ -31,7 +33,14 @@ public class HeroController : MonoBehaviour {
             if (this._move > 0)
             {
                 this._facingRight = true;
+                this._flip();
             }
+            if (this._move <0)
+            {
+                this._facingRight = false;
+                this._flip();
+            }
+
             //CALL WALK SEQUENCE
             this._animator.SetInteger("AnimState", 1);
         }
@@ -47,4 +56,18 @@ public class HeroController : MonoBehaviour {
             this._animator.SetInteger("AnimState", 2);
         }
     }
+
+    //PRVATE METHODS
+    private void _flip()
+    {
+        if (this._facingRight)
+        {
+            this._transform.localScale = new Vector2(1, 1);
+        }
+        else
+        {
+            this._transform.localScale = new Vector2(-1, 1);
+        }
+    }
+
 }
