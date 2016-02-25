@@ -1,7 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//VELOCITY RANGE UTILITY RANGE CLASS ***********************************
+[System.Serializable]
+public class VelocityRange
+{
+    //PUBLIC VARIABLES
+    public float minimum;
+    public float maximum;
+
+    //CONSTRUCTOR
+    public VelocityRange(float minimum,float maximum)
+    {
+        this.minimum = minimum;
+        this.maximum = maximum;
+    }
+   
+}
+
 public class HeroController : MonoBehaviour {
+
+    //PUBLIC VARIABLES
+    public VelocityRange velocityRange;
+    public float moveFoce;
+    private float jumpForce;
 
     //PRIVATE VARIABLES
     private Animator _animator;
@@ -10,10 +33,39 @@ public class HeroController : MonoBehaviour {
     private bool _facingRight;
     private Transform _transform;
 
+    public float JumpForce
+    {
+        get
+        {
+            return JumpForce1;
+        }
+
+        set
+        {
+            JumpForce1 = value;
+        }
+    }
+
+    public float JumpForce1
+    {
+        get
+        {
+            return jumpForce;
+        }
+
+        set
+        {
+            jumpForce = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
     {
+        //PUBLIC VARIABLES
+        this.velocityRange = new VelocityRange(300f, 400f);
+        
+        //PRIVATE VARIABLES
         this._transform = gameObject.GetComponent<Transform>();
         this._animator = gameObject.GetComponent<Animator>();
         this._move = 0f;
