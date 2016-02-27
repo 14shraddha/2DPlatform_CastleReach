@@ -27,6 +27,7 @@ public class HeroController : MonoBehaviour {
     public float jumpForce;
     public Transform groundCheck;
     public Transform camera;
+    public GameController gameController;
 
 
     //PRIVATE VARIABLES
@@ -143,6 +144,7 @@ public class HeroController : MonoBehaviour {
         if (other.gameObject.CompareTag("Death"))
         {
             this._spawn();
+            this.gameController.LivesValue--;
         }
     }
 
