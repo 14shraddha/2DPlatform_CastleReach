@@ -41,7 +41,7 @@ public class HeroController : MonoBehaviour {
     void Start()
     {
         //PUBLIC VARIABLES
-        this.velocityRange = new VelocityRange(300f, 30000f);
+        this.velocityRange = new VelocityRange(200f, 210f);
         
         //PRIVATE VARIABLES
         this._transform = gameObject.GetComponent<Transform>();
