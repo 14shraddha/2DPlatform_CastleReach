@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\GameController.cs" />
     <Compile Include="Assets\_Scripts\HeroController.cs" />
+    <Compile Include="Assets\_Scripts\SpikedWheelController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

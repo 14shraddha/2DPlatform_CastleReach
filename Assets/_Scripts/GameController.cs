@@ -18,6 +18,9 @@ public class GameController : MonoBehaviour {
     private int _scoreValue;
     private int _livesValue;
 
+    [SerializeField]
+    private AudioSource _gameOverSound;
+
     //Public Access methods
     
     public int ScoreValue
@@ -65,7 +68,8 @@ public class GameController : MonoBehaviour {
     public Text GameOverLable;
     public Text HighScoreLable;
     public Button RestartButton;
-
+    public HeroController hero;
+    public SpikedWheelController spikedWheel;
     
 
     // Use this for initialization
@@ -84,11 +88,10 @@ public class GameController : MonoBehaviour {
     {
         this._scoreValue = 0;
         this._livesValue = 5;
-        //this.GameOverLable.enabled = false;
-       // this.HighScoreLable.enabled = false;
-       // this.RestartButton.gameObject.SetActive(false);
-
-       
+        this.GameOverLable.enabled = false;
+        this.HighScoreLable.enabled = false;
+        this.RestartButton.gameObject.SetActive(false);
+  
     }
 
     private void _endGame()
@@ -100,15 +103,21 @@ public class GameController : MonoBehaviour {
 
         this.LivesLable.enabled = false;
         this.ScoreLable.enabled = false;
+
+        this.hero.gameObject.SetActive(false);
+        this.spikedWheel.gameObject.SetActive(false);
+
+        this._gameOverSound.Play();
        
     }
 
     //Public methods
 
-   /* public void RestartButtonClick()
+    public void RestartButtonClick()
     {
-        Application.LoadLevel("Garden");// to load the level of the game if resetbutton is pressed
+        
+        Application.LoadLevel("Main");// to load the level of the game if resetbutton is pressed
     }
-    */
+    
 
 }
