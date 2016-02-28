@@ -62,9 +62,9 @@ public class GameController : MonoBehaviour {
     //Public Instances
     public Text LivesLable;
     public Text ScoreLable;
-    //public Text GameOverLable;
-    //public Text HighScoreLable;
-    //public Button RestartButton;
+    public Text GameOverLable;
+    public Text HighScoreLable;
+    public Button RestartButton;
 
     
 
@@ -93,10 +93,10 @@ public class GameController : MonoBehaviour {
 
     private void _endGame()
     {
-       //this.HighScoreLable.text = "High Score: " + this._scoreValue;
-        //this.GameOverLable.enabled = true;
-        //this.HighScoreLable.enabled = true;
-       // this.RestartButton.gameObject.SetActive(true);
+       this.HighScoreLable.text = "High Score: " + this._scoreValue;
+        this.GameOverLable.enabled = true;
+        this.HighScoreLable.enabled = true;
+       this.RestartButton.gameObject.SetActive(true);
 
         this.LivesLable.enabled = false;
         this.ScoreLable.enabled = false;
