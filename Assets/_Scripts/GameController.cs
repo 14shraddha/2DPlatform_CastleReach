@@ -69,7 +69,6 @@ public class GameController : MonoBehaviour {
     public Text HighScoreLable;
     public Button RestartButton;
     public HeroController hero;
-    public SpikedWheelController spikedWheel;
     
 
     // Use this for initialization
@@ -96,16 +95,16 @@ public class GameController : MonoBehaviour {
 
     private void _endGame()
     {
-       this.HighScoreLable.text = "High Score: " + this._scoreValue;
+        this.HighScoreLable.text = "High Score: " + this._scoreValue;
         this.GameOverLable.enabled = true;
         this.HighScoreLable.enabled = true;
-       this.RestartButton.gameObject.SetActive(true);
+        this.RestartButton.gameObject.SetActive(true);
 
         this.LivesLable.enabled = false;
         this.ScoreLable.enabled = false;
 
         this.hero.gameObject.SetActive(false);
-        this.spikedWheel.gameObject.SetActive(false);
+        
 
         this._gameOverSound.Play();
        

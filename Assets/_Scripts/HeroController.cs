@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 //VELOCITY RANGE UTILITY RANGE CLASS ***********************************
@@ -27,7 +28,14 @@ public class HeroController : MonoBehaviour {
     public float jumpForce;
     public Transform groundCheck;
     public Transform camera;
+    public Button RestartButton;
+    public Text HighScoreLable;
+    public HeroController hero;
+    public Text LivesLable;
+    public Text ScoreLable;
+
     public GameController gameController;
+
 
 
     //PRIVATE VARIABLES
@@ -42,7 +50,30 @@ public class HeroController : MonoBehaviour {
     private AudioSource _jumpSound;
     private AudioSource _diamondSound;
     private AudioSource _hurtSound;
+    private AudioSource _gameOverSound;
+
+    private int _scoreValue;
     
+    
+
+
+    //Public Access methods
+
+    public int ScoreValue
+    {
+        get
+        {
+            return _scoreValue;
+        }
+        set
+        {
+            this._scoreValue = value;
+            this.ScoreLable.text = "Score:" + this._scoreValue;
+            Debug.Log(this._scoreValue);
+        }
+    }
+
+
     // Use this for initialization
     void Start()
     {
@@ -62,6 +93,7 @@ public class HeroController : MonoBehaviour {
         this._jumpSound = this._audioSources[0];
         this._diamondSound = this._audioSources[1];
         this._hurtSound = this._audioSources[2];
+        this._gameOverSound = this._audioSources[3];
 
         // PLACE HERO ON CORRECT POSITION
         this._spawn();
@@ -164,6 +196,26 @@ public class HeroController : MonoBehaviour {
             this._hurtSound.Play();
             this.gameController.LivesValue--;
         }
+
+        if (other.gameObject.CompareTag("SpikedWheel"))
+        {
+            this._hurtSound.Play();
+            this.gameController.LivesValue--;
+            
+        }
+
+        if (other.gameObject.CompareTag("Castle"))
+        {
+            this.HighScoreLable.text = "High Score: " + this._scoreValue;
+            this.HighScoreLable.enabled = true;
+            this.RestartButton.gameObject.SetActive(true);
+            this.LivesLable.enabled = false;
+            this.ScoreLable.enabled = false;
+            this.hero.gameObject.SetActive(false);
+
+            this._gameOverSound.Play();
+
+        }
     }
 
     //PRVATE METHODS
@@ -182,5 +234,11 @@ public class HeroController : MonoBehaviour {
     private void _spawn()
     {
         this._transform.position = new Vector3(-840f, -150f, 0);
+    }
+
+    public void RestartButtonClick()
+    {
+
+        Application.LoadLevel("Main");// to load the level of the game if resetbutton is pressed
     }
 }
