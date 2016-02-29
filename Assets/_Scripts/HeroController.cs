@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+﻿
+//HeroController
+
+/*  Developed by Shraddhaben Patel 300821026
+    Last Modified by Shraddhaben Patel
+    Last Modified Date: Feb 29,2016
+    This file is used for controlling the hero
+    This file only belongs to the hero
+    It provides functionality for the hero to play the game.*/
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -33,7 +43,7 @@ public class HeroController : MonoBehaviour {
     public HeroController hero;
     public Text LivesLable;
     public Text ScoreLable;
-
+    public Text WinLabel;
     public GameController gameController;
 
 
@@ -50,6 +60,8 @@ public class HeroController : MonoBehaviour {
     private AudioSource _jumpSound;
     private AudioSource _diamondSound;
     private AudioSource _hurtSound;
+
+    [SerializeField]
     private AudioSource _gameOverSound;
 
     private int _scoreValue;
@@ -93,8 +105,7 @@ public class HeroController : MonoBehaviour {
         this._jumpSound = this._audioSources[0];
         this._diamondSound = this._audioSources[1];
         this._hurtSound = this._audioSources[2];
-        this._gameOverSound = this._audioSources[3];
-
+        
         // PLACE HERO ON CORRECT POSITION
         this._spawn();
     }
@@ -208,6 +219,7 @@ public class HeroController : MonoBehaviour {
         {
             this.HighScoreLable.text = "High Score: " + this._scoreValue;
             this.HighScoreLable.enabled = true;
+            this.WinLabel.enabled = true;
             this.RestartButton.gameObject.SetActive(true);
             this.LivesLable.enabled = false;
             this.ScoreLable.enabled = false;

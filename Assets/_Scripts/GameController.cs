@@ -2,7 +2,7 @@
 
 /*  Developed by Shraddhaben Patel 300821026
     Last Modified by Shraddhaben Patel
-    Last Modified Date: Feb 4,2016
+    Last Modified Date: Feb 29,2016
     This file is used for the whole game control.
     Like it does not belong to one specific asset.
     It goes to all the asset and do the functionality.*/
@@ -67,6 +67,7 @@ public class GameController : MonoBehaviour {
     public Text ScoreLable;
     public Text GameOverLable;
     public Text HighScoreLable;
+    public Text WinLabel;
     public Button RestartButton;
     public HeroController hero;
     
@@ -90,6 +91,7 @@ public class GameController : MonoBehaviour {
         this.GameOverLable.enabled = false;
         this.HighScoreLable.enabled = false;
         this.RestartButton.gameObject.SetActive(false);
+        this.WinLabel.enabled = false;
   
     }
 
